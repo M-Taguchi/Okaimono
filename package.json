@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "babel-preset-mobx": "^2.0.0",
+    "mobx": "^5.10.1",
+    "mobx-react-lite": "^1.4.1",
     "next": "^8.1.1-canary.57",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
