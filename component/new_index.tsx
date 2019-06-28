@@ -22,6 +22,7 @@ class new_index{
     @action.bound
     add_item(){
         this.items.push(this.currentText);
+        console.log(JSON.stringify(this.items))
         this.currentText = "";
     }
 }
