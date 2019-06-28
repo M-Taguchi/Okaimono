@@ -1,10 +1,16 @@
 import {action, computed, configure, observable} from "mobx";
 configure({enforceActions: true});
 
-class new_index{
+export interface NewIndexModel{
+    currentText:string;
+    items:string[];
+}
+class new_index implements NewIndexModel {
+    //もでる
     @observable currentText:string;
     @observable items: string[];
 
+    //こんとろーら
     @computed get isAddable():boolean{
         return this.currentText != "";
 }
@@ -24,6 +30,11 @@ class new_index{
         this.items.push(this.currentText);
         console.log(JSON.stringify(this.items))
         this.currentText = "";
+    }
+
+    @action.bound
+    deleteItemwithIndex(index:number){
+        this.items.splice(index, 1);
     }
 }
 

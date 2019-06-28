@@ -1,6 +1,7 @@
 import index_controller from "../component/new_index"
 import {FC, useState} from "react";
 import {Observer} from "mobx-react-lite";
+import new_index from "../component/new_index";
 
 const controller = new index_controller();
 
@@ -29,20 +30,20 @@ const Index = () => {
                     </button>
                 }</Observer>
 
-                <TextView text={controller.items}/>
+                <TextView controller={controller}/>
             </p>
 
         </div>
     )
 };
 
-const TextView:FC<{ text: string[] }> = prop=> {
+const TextView:FC<{ controller:new_index }> = prop=> {
     return (
 
         <Observer>{() =>
             <div>
-                {prop.text.map((e) => {
-                    return <li>{e}</li>
+                {prop.controller.items.map((e,i) => {
+                    return <li>{e} <button onClick={()=>{prop.controller.deleteItemwithIndex(i)}}>けす</button></li>
                 })}
             </div>
         }</Observer>
