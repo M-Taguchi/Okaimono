@@ -1,5 +1,5 @@
 import index_controller from "../component/new_index"
-import {FC, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import {Observer} from "mobx-react-lite";
 import new_index from "../component/new_index";
 
@@ -8,6 +8,9 @@ const controller = new index_controller();
 const Index = () => {
     //const [hoge, sethoge] = useState<string>("初期値");
     //const [send, setSend] = useState<string[]>([]);
+    useEffect(()=>{
+        controller.initialize();
+    },[])
     return (
         <div>
             <p>欲しいもの：
@@ -37,13 +40,18 @@ const Index = () => {
     )
 };
 
-const TextView:FC<{ controller:new_index }> = prop=> {
+const TextView: FC<{ controller: new_index }> = prop => {
     return (
 
         <Observer>{() =>
             <div>
-                {prop.controller.items.map((e,i) => {
-                    return <li>{e} <button onClick={()=>{prop.controller.deleteItemwithIndex(i)}}>けす</button></li>
+                {prop.controller.items.map((e, i) => {
+                    return <li>{e}
+                        <button onClick={() => {
+                            prop.controller.deleteItemwithIdex(i)
+                        }}>けす
+                        </button>
+                    </li>
                 })}
             </div>
         }</Observer>
